@@ -4,6 +4,9 @@ const routerApp = express.Router();
 
 const appLogin = require("../login/controller/ctlLogin");
 
+// Importa o Controller de Categorias Financeiras
+const appCategorias = require("../categorias/controller/ctlCategorias");
+
 //Rota de login
 routerApp.post(["/Login", "/login"], appLogin.Login);
 routerApp.post(["/Logout", "/logout"], appLogin.Logout);
