@@ -1,7 +1,7 @@
 // Importar dependências
 const db = require('../../database/databaseConfig');
 
-//Consultar credenciales de usuario
+//Consultar credenciais do usuario
 const GetCredencial = async (loginPar) => {
   return (
     await db.query(
