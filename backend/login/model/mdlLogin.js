@@ -6,7 +6,7 @@ const GetCredencial = async (loginPar) => {
   return (
     await db.query(
       "select username, password " +
-        "from usuarios where username = $1 and deleted = false",
+        "from usuarios where username = $1 and removido = false",
       [loginPar],
     )
   ).rows;
