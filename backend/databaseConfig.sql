@@ -11,9 +11,9 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE EXTENSION if NOT EXISTS pgcrypto;
 
 --Inserir usuários para teste
-insert into usuarios values
-(default, 'admin', crypt('admin', gen_salt('bf'))), 
-(default, 'user1', crypt('1234', gen_salt('bf')));
+INSERT INTO usuarios (username, password) VALUES
+('admin', crypt('admin', gen_salt('bf'))), 
+('user1', crypt('1234', gen_salt('bf')));
 
 --Criar tabela Contas
 CREATE TABLE IF NOT EXISTS categorias(
