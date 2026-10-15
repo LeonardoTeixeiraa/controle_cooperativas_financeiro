@@ -14,3 +14,25 @@ CREATE EXTENSION if NOT EXISTS pgcrypto;
 insert into usuarios values
 (default, 'admin', crypt('admin', gen_salt('bf'))), 
 (default, 'user1', crypt('1234', gen_salt('bf')))
+
+--Criar tabela Contas
+CREATE TABLE IF NOT EXISTS categorias(
+    id BIGSERIAL NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT NOT NULL,
+    deleted BOOLEAN DEFAULT FALSE,
+    CONSTRAINT pK_categorias PRIMARY KEY (id)
+);
+
+--Criar tabela de categoria
+CREATE TABLE IF NOT EXISTS contas(
+    id BIGSERIAL NOT NULL,
+    descricao TEXT NOT NULL,
+    valor DECIMAL(10,2) NOT NULL,
+    data_vencimento DATE NOT NULL,
+    pago BOOLEAN DEFAULT FALSE,
+    categoria_id BIGINT NOT NULL,
+    deleted BOOLEAN DEFAULT FALSE,
+    CONSTRAINT pK_contas PRIMARY KEY (id),
+    CONSTRAINT fk_categoria FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+);
