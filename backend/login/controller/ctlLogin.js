@@ -33,7 +33,7 @@ function AutenticaJWT(req, res, next) {
       .json({ auth: false, message: "Não foi informado o token JWT" });
   const bearer = tokenHeader.split(" ");
   const token = bearer[1];
-  jwt.verify(token, process.env.SECRET_API, function (err, decoded) {
+  jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
     //Retorna erro se o token for inválido ou expirado
     if (err)
       return res
