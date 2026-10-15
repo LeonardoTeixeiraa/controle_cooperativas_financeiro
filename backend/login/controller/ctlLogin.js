@@ -15,7 +15,7 @@ const Login = async (req, res, next) => {
   }
 // Verificar senha
   if (bCrypt.compareSync(password, credencial[0].password)) {
-    const token = jwt.sign({ username }, process.env.SECRET_API, {
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, {
       expiresIn: 600, //token expira em 10 minutos
     });
     return res.json({ auth: true, token: token });
