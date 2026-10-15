@@ -1,0 +1,63 @@
+
+### Teste de Login - Obter Token JWT
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "user1",
+    "password": "1234"
+}
+
+### Armazena o token retornado pelo Login
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### ID da categoria que será utilizada nos testes
+### Alterar de acordo com o ID cadastrado no banco
+@categoriaID = 1
+
+
+### 1. INSERT - Cadastrar nova categoria
+POST http://localhost:40000/insertCategoria HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Energia",
+    "descricao": "Despesas com energia elétrica"
+}
+
+
+### 2. GET ALL - Buscar todas as categorias
+GET http://localhost:40000/getAllCategorias HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+### 3. GET BY ID - Buscar categoria pelo ID
+GET http://localhost:40000/getCategoriaByID/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+### 4. UPDATE - Atualizar categoria
+PUT http://localhost:40000/updateCategoria/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Energia Elétrica",
+    "descricao": "Pagamento de contas de energia da cooperativa"
+}
+
+
+### 5. DELETE - Remover categoria logicamente
+DELETE http://localhost:40000/deleteCategoria/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+### 6. VERIFICAÇÃO - Consultar após remoção
+GET http://localhost:40000/getCategoriaByID/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
