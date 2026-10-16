@@ -102,14 +102,53 @@ app.get("/categorias/editar/:id", (req, res) => {
   });
 });
 
-// Página provisória do módulo do Bruno
+
+// ======================================
+// PÁGINAS DO MÓDULO DE CONTAS - BRUNO
+// ======================================
+
+// Listagem de contas
 app.get("/contas", (req, res) => {
-  res.render("emConstrucao.njk", {
-    title: "Contas a pagar",
-    activeMenu: "contas",
-    backendUrl: servidorDw3
-  });
+    res.render("contas.njk", {
+        title: "Contas a Pagar",
+        activeMenu: "contas",
+        servidorDw3: servidorDw3
+    });
 });
+
+// Cadastro de nova conta
+app.get("/contas/novo", (req, res) => {
+    res.render("contasForm.njk", {
+        title: "Cadastrar Conta",
+        activeMenu: "contas",
+        servidorDw3: servidorDw3,
+        operacao: "novo",
+        contaID: ""
+    });
+});
+
+// Consulta visual de uma conta
+app.get("/contas/visualizar/:id", (req, res) => {
+    res.render("contasForm.njk", {
+        title: "Visualizar Conta",
+        activeMenu: "contas",
+        servidorDw3: servidorDw3,
+        operacao: "visualizar",
+        contaID: req.params.id
+    });
+});
+
+// Edição de conta
+app.get("/contas/editar/:id", (req, res) => {
+    res.render("contasForm.njk", {
+        title: "Editar Conta",
+        activeMenu: "contas",
+        servidorDw3: servidorDw3,
+        operacao: "editar",
+        contaID: req.params.id
+    });
+});
+
 
 // Inicia o servidor Front-End
 app.listen(port, () => {
