@@ -1,0 +1,41 @@
+/* Identidade visual do CoopFinance */
+
+.logo-financeiro {
+  color: #435ebe;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.logo-financeiro span {
+  color: #20a5a1;
+}
+
+.logo-financeiro .bi {
+  margin-right: 6px;
+}
+
+.page-heading {
+  margin-bottom: 25px;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+/* Botão do tema claro-escuro */
+
+#sidebar .logo-financeiro {
+  font-size: 20px;
+}
+
+#sidebar .theme-toggle i {
+  font-size: 15px;
+}
+
+#sidebar .theme-toggle .form-check-input {
+  width: 32px;
+  height: 20px;
+  cursor: pointer;
+}
