@@ -1,7 +1,28 @@
 //Importa nossas funções de banco
 const mdlCategorias = require("../model/mdlCategorias");
 
-// 1. GET ALL - Consulta todas as categorias
+// Valida o ID recebido pela URL.
+// Aceita somente números inteiros positivos.
+const ValidarCategoriaID = (id) => {
+
+  // Verifica se contém apenas dígitos e começa com 1 a 9
+  if (!/^[1-9][0-9]*$/.test(id)) {
+    return null;
+  }
+
+  // Converte a string para número
+  const numero = Number(id);
+
+  // Garante que o ID seja representável com segurança
+  if (!Number.isSafeInteger(numero)) {
+    return null;
+  }
+
+  return numero;
+};
+
+
+// Consulta todas as categorias (GET ALL)
 // O (req, res) Recebe a requisição e prepara a resposta
 const GetAllCategorias = (req, res) =>
   (async () => {
@@ -12,11 +33,18 @@ const GetAllCategorias = (req, res) =>
     res.json({ status: "ok", registro: registro });
   })();
 
-// 2. GET BY ID - Consulta uma categoria pelo ID
+// Consulta uma categoria pelo ID (GET BY ID)
 const GetCategoriaByID = (req, res) =>
   (async () => {
     // Pega o ID informado na URL e converte para inteiro
-    const categoriaID = parseInt(req.params.categoriaid);
+    const categoriaID = ValidarCategoriaID(req.params.categoriaid);
+
+    if (categoriaID === null) {
+      return res.status(400).json({
+        status: "erro",
+        mensagem: "ID da categoria inválido."
+      });
+    }
 
     // Chama o Model passando o ID da categoria
     let registro = await mdlCategorias.GetCategoriaByID(categoriaID);
@@ -25,7 +53,7 @@ const GetCategoriaByID = (req, res) =>
     res.json({ status: "ok", registro: registro });
   })();
 
-// 3. INSERT - Insere uma nova categoria
+// Insere uma nova categoria (INSERT)
 const InsertCategoria = (request, res) =>
   (async () => {
     // Recebe os dados enviados pelo Front-End
@@ -39,7 +67,7 @@ const InsertCategoria = (request, res) =>
     res.json({ status: msg, linhasAfetadas: linhasAfetadas });
   })();
 
-// 4. UPDATE - Atualiza uma categoria existente
+// Atualiza uma categoria existente (UPDATE)
 const UpdateCategoria = (request, res) =>
   (async () => {
     // Recupera o ID informado na URL
@@ -56,11 +84,18 @@ const UpdateCategoria = (request, res) =>
     res.json({ status: msg, linhasAfetadas: linhasAfetadas });
   })();
 
-// 5. DELETE - Remove logicamente uma categoria
+// Remove logicamente uma categoria (DELETE)
 const DeleteCategoria = (request, res) =>
   (async () => {
-    // Recupera o ID da categoria pela URL
-    const categoriaID = parseInt(request.params.categoriaid);
+
+    const categoriaID = ValidarCategoriaID(request.params.categoriaid);
+
+    if (categoriaID === null) {
+      return res.status(400).json({
+        status: "erro",
+        mensagem: "ID da categoria inválido."
+      });
+    }
 
     // Chama o Model para marcar removido = true
     let { msg, linhasAfetadas } =

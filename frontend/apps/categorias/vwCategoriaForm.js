@@ -1,4 +1,3 @@
-
 // Identifica os elementos do formulário
 const formulario = document.getElementById("formCategoria");
 const mensagemForm = document.getElementById("mensagemFormulario");
@@ -50,7 +49,7 @@ const RequisicaoCategoria = async (url, metodo, registro = null) => {
     return dados;
 };
 
-// 2. GET BY ID - Consulta uma categoria pelo ID
+// Consulta uma categoria pelo ID (GET BY ID)
 const GetCategoriaByID = async (id) => {
 
     const dados = await RequisicaoCategoria(
@@ -61,7 +60,7 @@ const GetCategoriaByID = async (id) => {
     return dados.registro;
 };
 
-// 3. INSERT - Cadastra uma categoria
+// Cadastra uma categoria (INSERT)
 const InsertCategoria = async (registro) => {
 
     return await RequisicaoCategoria(
@@ -71,7 +70,7 @@ const InsertCategoria = async (registro) => {
     );
 };
 
-// 4. UPDATE - Atualiza uma categoria
+// Atualiza uma categoria (UPDATE)
 const UpdateCategoria = async (id, registro) => {
 
     return await RequisicaoCategoria(
