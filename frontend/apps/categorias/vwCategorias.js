@@ -10,7 +10,7 @@ const mensagem = document.getElementById("mensagemCategorias");
 // Endereço da API recebido do servidor Front-End
 const servidorDw3 = painel.dataset.apiUrl;
 
-// 1. GET ALL - Consulta as categorias no Back-End
+// Consulta as categorias no Back-End (GET ALL)
 const GetAllCategorias = async () => {
 
     // Recupera o token gerado durante o login
@@ -68,7 +68,7 @@ const GetAllCategorias = async () => {
     }
 };
 
-// 5. DELETE - Realiza a exclusão lógica da categoria
+// Realiza a exclusão lógica da categoria (DELETE)
 const DeleteCategoria = async (categoriaID) => {
 
     // Recupera o token do login
@@ -110,7 +110,7 @@ const DeleteCategoria = async (categoriaID) => {
     return dados;
 };
 
-// 2. Exibe os registros na tabela HTML
+// Exibe os registros na tabela HTML
 const MostrarCategorias = (categorias) => {
 
     // Limpa as linhas anteriores
@@ -122,7 +122,7 @@ const MostrarCategorias = (categorias) => {
         const linha = document.createElement("tr");
         const coluna = document.createElement("td");
 
-        coluna.colSpan = 3;
+        coluna.colSpan = 4;
         coluna.className = "text-center text-muted";
         coluna.textContent = "Nenhuma categoria encontrada.";
 
@@ -205,7 +205,7 @@ const MostrarCategorias = (categorias) => {
     });
 };
 
-// 3. Filtra as categorias pelo texto pesquisado
+// Filtra as categorias pelo texto pesquisado
 const FiltrarCategorias = () => {
 
     const pesquisa = document

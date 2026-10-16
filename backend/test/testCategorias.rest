@@ -17,7 +17,7 @@ content-type: application/json
 @categoriaID = 1
 
 
-### 1. INSERT - Cadastrar nova categoria
+### Cadastrar nova categoria (Insert)
 POST http://localhost:40000/insertCategoria HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{accessToken}}
@@ -28,19 +28,19 @@ Authorization: Bearer {{accessToken}}
 }
 
 
-### 2. GET ALL - Buscar todas as categorias
+### Buscar todas as categorias (Get ALL)
 GET http://localhost:40000/getAllCategorias HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{accessToken}}
 
 
-### 3. GET BY ID - Buscar categoria pelo ID
+### Buscar categoria pelo ID (Get By ID)
 GET http://localhost:40000/getCategoriaByID/{{categoriaID}} HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{accessToken}}
 
 
-### 4. UPDATE - Atualizar categoria
+### Atualizar categoria - (Update)
 PUT http://localhost:40000/updateCategoria/{{categoriaID}} HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{accessToken}}
@@ -51,13 +51,42 @@ Authorization: Bearer {{accessToken}}
 }
 
 
-### 5. DELETE - Remover categoria logicamente
+### Remover categoria logicamente (Delete)
 DELETE http://localhost:40000/deleteCategoria/{{categoriaID}} HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{accessToken}}
 
 
-### 6. VERIFICAÇÃO - Consultar após remoção
+
+### Verificação de Consulta após remoção
 GET http://localhost:40000/getCategoriaByID/{{categoriaID}} HTTP/1.1
 content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+###Validações de Segurança.
+
+### Teste 1: ID com letras
+GET http://localhost:40000/getCategoriaByID/2abc
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+### Teste 2: ID negativo
+GET http://localhost:40000/getCategoriaByID/-1
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+### Teste 3: ID zero
+DELETE http://localhost:40000/deleteCategoria/0
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+### Teste 4: ID válido
+GET http://localhost:40000/getCategoriaByID/2
 Authorization: Bearer {{accessToken}}

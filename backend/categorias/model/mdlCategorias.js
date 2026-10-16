@@ -1,7 +1,6 @@
-
 const db = require("../../database/databaseConfig");
 
-// 1. GET ALL - Retorna todas as categorias não removidas
+// Retorna todas as categorias não removidas (GET ALL)
 const GetAllCategorias = async () => {
   return (
     await db.query(
@@ -11,7 +10,7 @@ const GetAllCategorias = async () => {
   ).rows;
 };
 
-// 2. GET BY ID - Retorna uma categoria pelo ID
+// Retorna uma categoria pelo ID (GET BY ID)
 const GetCategoriaByID = async (categoriaIDPar) => {
   return (
     await db.query(
@@ -22,7 +21,7 @@ const GetCategoriaByID = async (categoriaIDPar) => {
   ).rows;
 };
 
-// 3. INSERT - Insere uma nova categoria
+// Insere uma nova categoria (INSERT)
 const InsertCategoria = async (registroPar) => {
   let linhasAfetadas;
   let msg = "ok";
@@ -46,7 +45,7 @@ const InsertCategoria = async (registroPar) => {
   return { msg, linhasAfetadas };
 };
 
-// 4. UPDATE - Atualiza uma categoria pelo ID
+// Atualiza uma categoria pelo ID (UPDATE)
 const UpdateCategoria = async (categoriaIDPar, registroPar) => {
   let linhasAfetadas;
   let msg = "ok";
@@ -73,7 +72,7 @@ const UpdateCategoria = async (categoriaIDPar, registroPar) => {
   return { msg, linhasAfetadas };
 };
 
-// 5. DELETE - Exclusão lógica (soft delete)
+// Exclusão lógica (soft delete)
 const DeleteCategoria = async (categoriaIDPar) => {
   let linhasAfetadas;
   let msg = "ok";

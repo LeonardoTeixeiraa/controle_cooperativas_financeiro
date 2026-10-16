@@ -1,4 +1,3 @@
-
 // Identifica o formulário quando a página terminar de carregar
 document.addEventListener("DOMContentLoaded", () => {
 
