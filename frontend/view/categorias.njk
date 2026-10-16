@@ -1,0 +1,101 @@
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<!-- Área principal do módulo de categorias -->
+<div id="painelCategorias" data-api-url="{{ backendUrl }}">
+
+    <!-- Cabeçalho da página -->
+    <div class="page-heading">
+        <h3>Categorias Financeiras</h3>
+        <p class="text-subtitle text-muted">
+            Gerencie as categorias de despesas da cooperativa.
+        </p>
+    </div>
+
+    <!-- Botão para cadastrar uma nova categoria -->
+    <div class="mb-4">
+        <a href="/categorias/novo" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i>
+            Nova categoria
+        </a>
+    </div>
+
+    <section class="section">
+
+        <!-- Card de informações -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted">Categorias ativas</h6>
+                        <h2 id="totalCategorias">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela de categorias -->
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title">Categorias cadastradas</h4>
+            </div>
+
+            <div class="card-body">
+
+                <!-- Pesquisa local -->
+                <div class="mb-3">
+                    <label for="buscaCategoria" class="form-label">
+                        Pesquisar categoria
+                    </label>
+
+                    <input
+                        type="search"
+                        class="form-control"
+                        id="buscaCategoria"
+                        placeholder="Digite o nome ou descrição">
+                </div>
+
+                <!-- Área de mensagens -->
+                <div id="mensagemCategorias"
+                     class="alert alert-danger d-none">
+                </div>
+
+                <!-- Listagem -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th class="text-end">Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="corpoCategorias">
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    Carregando categorias...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/apps/categorias/vwCategorias.js"></script>
+{% endblock %}

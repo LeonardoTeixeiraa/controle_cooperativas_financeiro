@@ -1,0 +1,59 @@
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<div class="page-heading">
+    <h3>Painel Financeiro</h3>
+    <p class="text-subtitle text-muted">
+        Controle financeiro da cooperativa
+    </p>
+</div>
+
+<section class="section">
+    <div class="row">
+
+        <!-- Card de Categorias -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body p-4">
+
+                    <h4>Categorias Financeiras</h4>
+
+                    <p>
+                        Cadastre e organize categorias
+                        de despesas da cooperativa.
+                    </p>
+
+                    <a href="/categorias" class="btn btn-primary">
+                        Gerenciar categorias
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Card de Contas -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body p-4">
+
+                    <h4>Contas a Pagar</h4>
+
+                    <p>
+                        Consulte e gerencie os pagamentos
+                        e compromissos financeiros.
+                    </p>
+
+                    <a href="/contas" class="btn btn-outline-primary">
+                        Gerenciar contas
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
