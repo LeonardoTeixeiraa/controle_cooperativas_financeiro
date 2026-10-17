@@ -1,6 +1,5 @@
 
 // MÓDULO CONTAS A PAGAR - LISTAGEM
-// Comunicação entre navegador e API usando fetch().
 
 (() => {
     "use strict";

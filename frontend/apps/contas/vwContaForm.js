@@ -1,7 +1,5 @@
 
 // FORMULÁRIO DE CONTAS A PAGAR
-// Operações: Create, Read e Update.
-
 (() => {
     "use strict";
 

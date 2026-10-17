@@ -1,5 +1,3 @@
-
-// JavaScript responsável pela autenticação do usuário
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.getElementById("formLogin");
@@ -45,8 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // Guarda o JWT para as próximas requisições
-            localStorage.setItem("token", dados.token);
-            localStorage.setItem("username", username);
+            salvarAutenticacao(dados.token, username);
 
             // Redireciona para o painel principal
             window.location.href = "/home";
