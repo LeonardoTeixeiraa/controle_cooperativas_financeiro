@@ -98,10 +98,6 @@ app.get("/categorias/editar/:id", (req, res) => {
   });
 });
 
-// ======================================
-// PÁGINAS DO MÓDULO DE CONTAS - BRUNO
-// ======================================
-
 // Listagem de contas
 app.get("/contas", (req, res) => {
   res.render("contas.njk", {
