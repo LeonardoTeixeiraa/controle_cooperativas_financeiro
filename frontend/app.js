@@ -10,7 +10,7 @@ require("dotenv").config({
 // Cria o servidor Express do Front-End
 const app = express();
 
-// Configura a Pporta do servidor e endereço da API Back-End
+// Configura a Porta do servidor e endereço da API Back-End
 const port = process.env.FRONTEND_PORT || 40100;
 const servidorDw3 = process.env.SERVIDOR_DW3 || "http://localhost:40000";
 

@@ -1,0 +1,92 @@
+
+### Teste de Login - Obter Token JWT
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "user1",
+    "password": "1234"
+}
+
+### Armazena o token retornado pelo Login
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### ID da categoria que será utilizada nos testes
+### Alterar de acordo com o ID cadastrado no banco
+@categoriaID = 1
+
+
+### Cadastrar nova categoria (Insert)
+POST http://localhost:40000/insertCategoria HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Energia",
+    "descricao": "Despesas com energia elétrica"
+}
+
+
+### Buscar todas as categorias (Get ALL)
+GET http://localhost:40000/getAllCategorias HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+### Buscar categoria pelo ID (Get By ID)
+GET http://localhost:40000/getCategoriaByID/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+### Atualizar categoria - (Update)
+PUT http://localhost:40000/updateCategoria/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Energia Elétrica",
+    "descricao": "Pagamento de contas de energia da cooperativa"
+}
+
+
+### Remover categoria logicamente (Delete)
+DELETE http://localhost:40000/deleteCategoria/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+
+### Verificação de Consulta após remoção
+GET http://localhost:40000/getCategoriaByID/{{categoriaID}} HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+###Validações de Segurança.
+
+### Teste 1: ID com letras
+GET http://localhost:40000/getCategoriaByID/2abc
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+### Teste 2: ID negativo
+GET http://localhost:40000/getCategoriaByID/-1
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+### Teste 3: ID zero
+DELETE http://localhost:40000/deleteCategoria/0
+Authorization: Bearer {{accessToken}}
+
+
+###
+
+### Teste 4: ID válido
+GET http://localhost:40000/getCategoriaByID/2
+Authorization: Bearer {{accessToken}}

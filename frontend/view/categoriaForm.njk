@@ -1,0 +1,154 @@
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<div class="page-heading">
+
+    {% if somenteLeitura %}
+        <h3>Visualizar Categoria</h3>
+    {% elif categoriaId %}
+        <h3>Editar Categoria</h3>
+    {% else %}
+        <h3>Cadastrar Categoria</h3>
+    {% endif %}
+
+    <p class="text-subtitle text-muted">
+        Gerenciamento das categorias financeiras da cooperativa.
+    </p>
+</div>
+
+<section class="section">
+
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Dados da categoria</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Mensagens de erro -->
+                    <div id="mensagemFormulario"
+                         class="alert alert-danger d-none">
+                    </div>
+
+                    <!-- Formulário de cadastro ou edição -->
+
+                    <!-- Formulário de categorias: cadastro, edição ou visualização -->
+                    <form id="formCategoria"
+                        data-categoria-id="{{ categoriaId }}"
+                        data-api-url="{{ backendUrl }}"
+                        data-somente-leitura="{% if somenteLeitura %}true{% else %}false{% endif %}">
+
+                        {% if somenteLeitura %}
+
+                        <!-- Informações complementares exibidas na consulta -->
+                        <div class="row mb-3">
+
+                            <div class="col-md-6">
+                                <label for="idDetalhe" class="form-label">
+                                    ID da categoria
+                                </label>
+                                <input
+                                    id="idDetalhe"
+                                    class="form-control"
+                                    type="text"
+                                    readonly>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="removidoDetalhe" class="form-label">
+                                    Removido
+                                </label>
+                                <input
+                                    id="removidoDetalhe"
+                                    class="form-control"
+                                    type="text"
+                                    readonly>
+                            </div>
+
+                        </div>
+
+                        {% endif %}
+
+                        <!-- Nome -->
+                        <div class="form-group mb-3">
+
+                            <label for="nome" class="form-label">
+                                Nome da categoria
+                            </label>
+
+                            <input type="text"
+                                   id="nome"
+                                   name="nome"
+                                   class="form-control"
+                                   maxlength="100"
+                                   required
+                                   placeholder="Ex.: Manutenção">
+
+                        </div>
+
+                        <!-- Descrição -->
+                        <div class="form-group mb-4">
+
+                            <label for="descricao" class="form-label">
+                                Descrição
+                            </label>
+
+                            <textarea id="descricao"
+                                      name="descricao"
+                                      class="form-control"
+                                      rows="4"
+                                      required
+                                      placeholder="Descreva a categoria"></textarea>
+
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="d-flex gap-2">
+
+                            {% if not somenteLeitura %}
+
+                            <button type="submit"
+                                    id="btnSalvar"
+                                    class="btn btn-primary">
+
+                                Salvar Categoria
+                            </button>
+
+                            {% else %}
+
+                            <button type="button"
+                                    id="btnSalvar"
+                                    class="d-none"
+                                    disabled>
+                            </button>
+
+                            {% endif %}
+
+                            <a href="/categorias"
+                               class="btn btn-secondary">
+
+                                {% if somenteLeitura %}Voltar{% else %}Cancelar{% endif %}
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/apps/categorias/vwCategoriaForm.js"></script>
+{% endblock %}
