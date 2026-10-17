@@ -30,17 +30,12 @@ app.use(express.static(path.join(__dirname, "public")));
 // Disponibiliza os scripts dos módulos
 app.use("/apps", express.static(path.join(__dirname, "apps")));
 
-// Rota temporária para testar o servidor
-app.get("/teste", (req, res) => {
-  res.send("Servidor Front-End funcionando!");
-});
-
 // Página inicial redireciona para o Login
 app.get("/", (req, res) => {
   res.redirect("/login");
 });
 
-// Página de Login provisória
+// Página de Login
 app.get("/login", (req, res) => {
   res.render("loginView.njk", {
     backendUrl: servidorDw3,

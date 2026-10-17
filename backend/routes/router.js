@@ -12,6 +12,9 @@ const appContas = require("../contas/controller/ctlContas");
 routerApp.post(["/Login", "/login"], appLogin.Login);
 routerApp.post(["/Logout", "/logout"], appLogin.Logout);
 
+//Rota para home
+routerApp.get(["/home", "/Home"], appLogin.AutenticaJWT);
+
 // Rotas categorias Financeiras
 
 // Listar todas as categorias (GET ALL)
@@ -49,13 +52,6 @@ routerApp.delete(
   appCategorias.DeleteCategoria
 );
 
-// Exportar as rotas
-module.exports = routerApp;
-
-// ======================================
-// ROTAS DE CONTAS A PAGAR - BRUNO
-// ======================================
-
 // Listando contas
 routerApp.get(
     "/getAllContas",
@@ -90,3 +86,5 @@ routerApp.delete(
     appLogin.AutenticaJWT,
     appContas.DeleteConta
 );
+
+module.exports = routerApp;

@@ -78,7 +78,7 @@
                         <li class="sidebar-title">Conta</li>
 
                         <li class="sidebar-item">
-                            <a href="/login" class="sidebar-link">
+                            <a href="/login" class="sidebar-link" onclick="realizarLogout(); return false;">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sair</span>
                             </a>
@@ -119,6 +119,12 @@
     <script src="/assets/static/js/components/dark.js"></script>
     <script src="/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="/assets/compiled/js/app.js"></script>
+    <script src="/js/auth.js"></script>
+    <script > 
+        if (!verificarAutenticacao()) {
+            // O redirecionamento é feito pela função.
+        }
+    </script>
 
     <!-- Scripts específicos de cada página -->
     {% block scripts %}
