@@ -1,0 +1,79 @@
+
+# TESTES DE CONTAS A PAGAR
+# Execute LOGIN primeiro.
+
+@api = http://localhost:40000
+
+# Altere depois do cadastro da conta.
+@contaID = 1
+
+### 1 - LOGIN
+# @name loginBruno
+POST {{api}}/Login
+Content-Type: application/json
+
+{
+    "username": "user1",
+    "password": "1234"
+}
+
+### TOKEN JWT
+
+@accessToken = {{loginBruno.response.body.$.token}}
+
+### 2 - INSERT - Cadastrar conta
+POST {{api}}/insertConta
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Conta de energia da cooperativa",
+    "valor": 850.50,
+    "data_vencimento": "2026-11-20",
+    "pago": false,
+    "categoria_id": 1
+}
+
+### 3 - GET ALL - Listar contas
+GET {{api}}/getAllContas
+Authorization: Bearer {{accessToken}}
+
+### 4 - GET BY ID - Consultar conta
+GET {{api}}/getContaByID/{{contaID}}
+Authorization: Bearer {{accessToken}}
+
+### 5 - UPDATE - Atualizar conta
+PUT {{api}}/updateConta/{{contaID}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Conta de energia atualizada",
+    "valor": 920.25,
+    "data_vencimento": "2026-11-25",
+    "pago": true,
+    "categoria_id": 2
+}
+
+### 6 - DELETE - Exclusão lógica
+DELETE {{api}}/deleteConta/{{contaID}}
+Authorization: Bearer {{accessToken}}
+
+### 7 - Verificar exclusão
+GET {{api}}/getContaByID/{{contaID}}
+Authorization: Bearer {{accessToken}}
+
+### 8 - Segurança: ID com letras
+GET {{api}}/getContaByID/2abc
+Authorization: Bearer {{accessToken}}
+
+### 9 - Segurança: ID negativo
+GET {{api}}/getContaByID/-1
+Authorization: Bearer {{accessToken}}
+
+### 10 - Segurança: ID zero
+DELETE {{api}}/deleteConta/0
+Authorization: Bearer {{accessToken}}
+
+### 11 - Segurança: sem token
+GET {{api}}/getAllContas

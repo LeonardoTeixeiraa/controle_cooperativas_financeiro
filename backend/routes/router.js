@@ -6,6 +6,7 @@ const appLogin = require("../login/controller/ctlLogin");
 
 // Importa o Controller de Categorias Financeiras
 const appCategorias = require("../categorias/controller/ctlCategorias");
+const appContas = require("../contas/controller/ctlContas");
 
 //Rota de login
 routerApp.post(["/Login", "/login"], appLogin.Login);
@@ -50,3 +51,42 @@ routerApp.delete(
 
 // Exportar as rotas
 module.exports = routerApp;
+
+// ======================================
+// ROTAS DE CONTAS A PAGAR - BRUNO
+// ======================================
+
+// Listando contas
+routerApp.get(
+    "/getAllContas",
+    appLogin.AutenticaJWT,
+    appContas.GetAllContas
+);
+
+// Consultando conta por ID
+routerApp.get(
+    "/getContaByID/:contaid",
+    appLogin.AutenticaJWT,
+    appContas.GetContaByID
+);
+
+// Cadastrando conta
+routerApp.post(
+    "/insertConta",
+    appLogin.AutenticaJWT,
+    appContas.InsertConta
+);
+
+// Atualizando conta
+routerApp.put(
+    "/updateConta/:contaid",
+    appLogin.AutenticaJWT,
+    appContas.UpdateConta
+);
+
+// Removendo conta logicamente
+routerApp.delete(
+    "/deleteConta/:contaid",
+    appLogin.AutenticaJWT,
+    appContas.DeleteConta
+);
