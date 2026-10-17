@@ -1,0 +1,109 @@
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<div class="container-fluid py-4"
+     id="contasApp"
+     data-api-backend="{{ servidorDw3 }}">
+
+    <h2>Contas a Pagar</h2>
+
+    <p class="text-muted">
+        Gerencie os compromissos financeiros da cooperativa.
+    </p>
+
+    <a href="/contas/novo"
+       class="btn btn-primary mb-4">
+        + Nova conta
+    </a>
+
+    <div id="mensagemContas"
+         class="alert alert-danger"
+         hidden></div>
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <h6>Contas ativas</h6>
+
+                    <h2 id="qtdContas">0</h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <h6>Valor pendente</h6>
+
+                    <h2 id="valorPendente">R$ 0,00</h2>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <h4 class="mb-3">Contas cadastradas</h4>
+
+            <label for="buscaConta" class="form-label">
+                Pesquisar conta
+            </label>
+
+            <input
+                type="search"
+                id="buscaConta"
+                class="form-control mb-3"
+                placeholder="Descrição, categoria ou situação">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Vencimento</th>
+                            <th>Categoria</th>
+                            <th>Situação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="corpoContas">
+
+                        <tr>
+                            <td colspan="7">
+                                Carregando contas...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/apps/contas/vwContas.js"></script>
+{% endblock %}
