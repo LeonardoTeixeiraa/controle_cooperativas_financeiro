@@ -90,3 +90,13 @@ Authorization: Bearer {{accessToken}}
 ### Teste 4: ID válido
 GET http://localhost:40000/getCategoriaByID/2
 Authorization: Bearer {{accessToken}}
+
+### Teste opcional meu de UPDATE com ID inválido
+PUT http://localhost:40000/updateCategoria/2abc HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Energia",
+    "descricao": "Despesas com energia elétrica"
+}

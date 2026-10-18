@@ -71,8 +71,14 @@ const InsertCategoria = (request, res) =>
 const UpdateCategoria = (request, res) =>
   (async () => {
     // Recupera o ID informado na URL
-    const categoriaID = parseInt(request.params.categoriaid);
+    const categoriaID = ValidarCategoriaID(request.params.categoriaid);
 
+    if (categoriaID === null) {
+      return res.status(400).json({
+        status: "erro",
+        mensagem: "ID da categoria inválido."
+      });
+    }
     // Recebe os novos dados enviados pelo Front-End
     const registro = request.body;
 
