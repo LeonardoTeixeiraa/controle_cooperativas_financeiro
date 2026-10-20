@@ -58,5 +58,5 @@ Feito isso, em outro terminal, execute o frontend
 cd frontend/
 node app.js
 ```
-
-
+O front-end deverá estar disponível em:
+http://localhost:40100/
